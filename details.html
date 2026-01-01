@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details | UrbanStepsKE</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom shadow-sm mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold" href="index.html">UrbanSteps<span style="color: #ff4d00;">KE</span></a>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link text-dark" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="catalog.html">Shop Catalog</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="#"><i class="fas fa-shopping-cart"></i> (0)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <div class="row g-5">
+            <div class="col-md-7">
+                <div class="main-img-container mb-3 shadow-sm rounded">
+                    <img id="mainImg" src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?q=80&w=1000" class="img-fluid rounded" alt="Sneaker Main View">
+                </div>
+                <div class="row g-2">
+                    <div class="col-3">
+                        <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?q=80&w=300" class="img-fluid rounded thumb-img active" onclick="updateImg(this)">
+                    </div>
+                    <div class="col-3">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=300" class="img-fluid rounded thumb-img" onclick="updateImg(this)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <h6 class="text-uppercase text-muted letter-spacing-1">Premium Footwear</h6>
+                <h1 class="fw-bold mb-3">Chuck 70 High 'University Blue'</h1>
+                
+                <div class="d-flex align-items-center mb-4">
+                    <h3 class="fw-bold text-danger mb-0 me-3">KSh 5,000</h3>
+                    <span class="text-muted text-decoration-line-through">KSh 11,200</span>
+                </div>
+
+                <div class="mb-4">
+                    <p class="fw-bold mb-2">Select Size (EU):</p>
+                    <div class="d-flex flex-wrap gap-2" id="size-picker">
+                        <button class="btn btn-outline-dark size-btn">39</button>
+                        <button class="btn btn-outline-dark size-btn">40</button>
+                        <button class="btn btn-outline-dark size-btn active">41</button>
+                        <button class="btn btn-outline-dark size-btn">42</button>
+                        <button class="btn btn-outline-dark size-btn">43</button>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-3">
+                    <button class="btn btn-dark btn-lg py-3 fw-bold" onclick="handleAddToCart()">
+                        <i class="fas fa-shopping-cart me-2"></i> ADD TO CART
+                    </button>
+                    <a href="https://wa.me/254700000000?text=I'm interested in the Chuck 70 Blue" class="btn btn-success btn-lg py-3 fw-bold">
+                        <i class="fab fa-whatsapp me-2"></i> ORDER VIA WHATSAPP
+                    </a>
+                </div>
+
+                <hr class="my-5">
+
+                <div class="accordion accordion-flush" id="infoAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#desc">
+                                PRODUCT DESCRIPTION
+                            </button>
+                        </h2>
+                        <div id="desc" class="accordion-collapse collapse show">
+                            <div class="accordion-body text-muted small">
+                                A premium update on the world's most iconic sneaker. Features organic canvas, vintage stitching, and upgraded cushioning for all-day comfort. Perfect for urban explorers.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="products.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Get the ID from the URL (e.g., details.html?id=17123456)
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+
+    if (productId) {
+        // 2. Get all products (from your products.js and localStorage)
+        const customProducts = JSON.parse(localStorage.getItem('userProducts')) || [];
+        // Note: If you have a static array in products.js, merge them here
+        const allProducts = [...customProducts]; 
+
+        // 3. Find the specific product
+        const product = allProducts.find(p => p.id == productId);
+
+        if (product) {
+            // 4. Update the HTML elements with real data
+            document.querySelector('h1.fw-bold').innerText = product.name;
+            document.querySelector('.text-danger').innerText = `KSh ${product.price.toLocaleString()}`;
+            document.getElementById('mainImg').src = product.image;
+            document.querySelector('.accordion-body').innerText = product.description;
+            
+            // Update original price if it exists
+            const originalPriceElem = document.querySelector('.text-decoration-line-through');
+            if (product.originalPrice) {
+                originalPriceElem.innerText = `KSh ${product.originalPrice.toLocaleString()}`;
+            } else {
+                originalPriceElem.style.display = 'none';
+            }
+
+            // Update Sizes
+            const sizeContainer = document.getElementById('size-picker');
+            sizeContainer.innerHTML = ''; // Clear old buttons
+            product.sizes.forEach(size => {
+                sizeContainer.innerHTML += `<button class="btn btn-outline-dark size-btn">${size}</button>`;
+            });
+        }
+    }
+});
+</script>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | UrbanStepsKE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-label { font-weight: 600; font-size: 0.9rem; }
+        .inventory-thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 5px; }
+    </style>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">UrbanSteps<span style="color: #ff4d00;">KE</span> Admin</a>
+            <a href="index.html" class="btn btn-outline-light btn-sm">View Store</a>
+        </div>
+    </nav>
+
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                
+                <div class="card shadow-sm border-0 p-4 mb-5">
+                    <h3 class="mb-4 text-center">Add New Product</h3>
+                    <form id="admin-form">
+                        <div class="mb-3">
+                            <label class="form-label">Shoe Name</label>
+                            <input type="text" id="p-name" class="form-control" placeholder="e.g. Nike Air Max 90" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Selling Price (KSh)</label>
+                                <input type="number" id="p-price" class="form-control" placeholder="5000" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Original Price (Strike-through)</label>
+                                <input type="number" id="p-original-price" class="form-control" placeholder="e.g. 10000">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Category</label>
+                                <select id="p-category" class="form-select">
+                                    <option value="Best Sellers">Best Sellers</option>
+                                    <option value="Leaving Stock">Leaving Stock</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Badge / Tag</label>
+                                <select id="p-tag" class="form-select">
+                                    <option value="">None</option>
+                                    <option value="SALE">SALE</option>
+                                    <option value="NEW">NEW</option>
+                                    <option value="HOT">HOT</option>
+                                    <option value="LIMITED">LIMITED</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Available Sizes</label>
+                            <input type="text" id="p-sizes" class="form-control" placeholder="e.g. 40, 41, 42, 43" required>
+                            <div class="form-text">Separate sizes with commas.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Product Description</label>
+                            <textarea id="p-desc" class="form-control" rows="3" placeholder="Describe the material, fit, and style..." required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Image URL</label>
+                            <input type="text" id="p-image" class="form-control" placeholder="URL or images/shoe.jpg" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Upload Product</button>
+                    </form>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="mb-3">Current Custom Inventory</h4>
+                    <div id="admin-inventory-list" class="bg-white p-3 rounded shadow-sm">
+                        <p class="text-muted mb-0">No custom products added yet.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button onclick="clearCustomProducts()" class="btn btn-link text-danger text-decoration-none small">Reset Custom Inventory</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="products.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

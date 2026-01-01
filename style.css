@@ -1,0 +1,311 @@
+/* --- URBANSTEP KE GLOBAL STYLES --- */
+:root {
+    --primary-orange: #ff4d00;
+    --dark-text: #333333;
+    --light-bg: #f8f9fa;
+    --border-color: #e0e0e0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--dark-text);
+    overflow-x: hidden;
+}
+
+/* --- NAVIGATION --- */
+.navbar-brand span {
+    color: var(--primary-orange);
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--primary-orange) !important;
+}
+
+/* --- PRODUCT CARDS (Leaving Stock) --- */
+.product-title {
+    font-weight: 500;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.shoe-card-border {
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.shoe-card-border:hover {
+    border-color: var(--dark-text) !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+}
+
+/* --- CATEGORY CARDS (Shop By Gender) --- */
+.category-card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+.category-card h5 {
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* --- SLIDER & SCROLLER SYSTEM --- */
+/*  */
+.slider-viewport, 
+.brand-slider-viewport {
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE/Edge */
+    padding: 20px 0;
+}
+
+.slider-viewport::-webkit-scrollbar,
+.brand-slider-viewport::-webkit-scrollbar { 
+    display: none; /* Chrome/Safari */
+}
+
+.slider-track, 
+.brand-slider-track {
+    display: flex;
+    gap: 20px;
+}
+
+.slider-item, 
+.brand-item {
+    flex: 0 0 300px; /* Fixed width for cards in scroller */
+    white-space: normal;
+}
+
+/* --- PROMO BANNERS --- */
+.banner-wrapper {
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    background-color: var(--light-bg);
+}
+
+.banner-img {
+    height: 600px;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.banner-wrapper:hover .banner-img {
+    transform: scale(1.05);
+}
+
+/* --- BRAND SCROLLER SPECIFICS --- */
+.brand-image-holder {
+    height: 180px;
+    background-color: #f6f6f6;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-image-holder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- FOOTER --- */
+.site-footer {
+    background-color: #ffffff;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+}
+
+.site-footer h6 {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    margin-bottom: 1.5rem;
+}
+
+.site-footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+.site-footer a:hover {
+    color: var(--primary-orange) !important;
+    text-decoration: underline !important;
+}
+
+/* --- UTILITIES --- */
+.btn-primary {
+    background-color: var(--primary-orange);
+    border-color: var(--primary-orange);
+    border-radius: 0; /* Urban flat style */
+    padding: 12px 30px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #e64500;
+    border-color: #e64500;
+}
+/* Container for the profile image */
+.profile-img-container {
+    width: 100%;
+    height: 450px; /* Adjust this height to match your image proportions */
+    background-color: #f0f0f0; /* Matches the background in your screenshot */
+    border: 1px solid #000; /* Thin black border from your image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Ensure the image is shown fully (uncropped) */
+.img-full-display {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* This prevents any cropping */
+    display: block;
+}
+
+.profile-card {
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+/* ==========================================================================
+   BEST SELLERS SECTION STYLES
+   ========================================================================== */
+.product-img-box {
+    background-color: #f1f1f1; /* Light grey background from your image */
+    padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+}
+
+.product-img-box img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Custom Navigation Arrows - Fixed for Visibility */
+.carousel-control-prev-custom, 
+.carousel-control-next-custom {
+    position: absolute;
+    top: 40%; /* Adjusted to align with the middle of the shoe image */
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background-color: white;
+    border: 1px solid #000; /* Sharp black border like your sample image */
+    border-radius: 50%;
+    z-index: 100; /* Increased to ensure they stay on top of images */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Stronger shadow to make them "pop" */
+    cursor: pointer;
+    color: #000; /* Ensures the arrow icon is black */
+    transition: all 0.3s ease;
+}
+
+/* Positioned inside the container so they are visible on screen */
+.carousel-control-prev-custom { left: 10px; }
+.carousel-control-next-custom { right: 10px; }
+
+/* Hover effect to show they are clickable */
+.carousel-control-prev-custom:hover, 
+.carousel-control-next-custom:hover {
+    background-color: #000;
+    color: #fff;
+}
+/* Typography matching your screenshot */
+.product-card h6 {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+}
+/* Styling for the SALE and NEW text */
+.label-text {
+    position: absolute;
+    top: 15px;         /* Distance from the top edge */
+    left: 15px;        /* Distance from the left edge */
+    
+    /* Font Styling */
+    font-family: 'Inter', sans-serif; /* Clean, modern font */
+    font-weight: 800;                 /* Bold look */
+    font-size: 13px;
+    letter-spacing: 1px;              /* Spaced out letters for a premium feel */
+    text-transform: uppercase;
+    z-index: 10;                      /* Keeps text above the image */
+}
+
+/* Colors */
+.text-orange {
+    color: #ff4d00; /* Your brand orange */
+}
+
+.text-black {
+    color: #000000;
+}
+
+/* IMPORTANT: Ensure the parent box allows absolute positioning */
+.product-img-box {
+    position: relative !important;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px; /* Or your preferred height */
+}
+/* Add this to ensure the product cards don't shrink in the scroller */
+#productScrollRow {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Allow touch scrolling on mobile */
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+#productScrollRow::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+#productScrollRow .col-6 {
+    flex: 0 0 auto; /* Prevent cards from squishing */
+    width: 280px;   /* Fixed width for better control in the slider */
+}
+.product-card {
+    position: relative;
+    cursor: pointer;
+}
+
+.product-card:hover .product-img-box img {
+    transform: scale(1.08);
+    transition: transform 0.4s ease;
+}
+
+/* Optional: Add a subtle overlay or button that appears on hover */
